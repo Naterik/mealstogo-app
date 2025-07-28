@@ -1,4 +1,4 @@
-import { View, SafeAreaView, StatusBar, FlatList, Text } from "react-native";
+import {  FlatList } from "react-native";
 import styled from "styled-components/native";
 import RestaurantInfoCard from "../components/restaurant-info-card.component";
 import { StyledSafeAreaView } from "../../../components/utility/safe-area.component";
@@ -26,7 +26,7 @@ const Loading = styled.Text`
 `;
 
 export const RestaurantsScreen = () => {
-  const { restaurants, isLoading, error } = useContext(RestaurantContext);
+  const { restaurants, isLoading } = useContext(RestaurantContext);
 
   return (
     <StyledSafeAreaView>
@@ -48,7 +48,7 @@ export const RestaurantsScreen = () => {
       {isLoading && (
         <Loading>
           <ActivityIndicator
-            animating={true}
+            animating={isLoading}
             color={MD2Colors.blueA200}
             size="large"
           />

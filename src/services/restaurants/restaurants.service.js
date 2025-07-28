@@ -1,4 +1,3 @@
-import React from "react";
 import { mocks, mockImages } from "../restaurants/mock/index";
 import camelize from "camelize";
 export const restaurantRequest = (location) => {
@@ -12,7 +11,7 @@ export const restaurantRequest = (location) => {
 };
 export const restaurantTransform = ({ results = [] }) => {
   const newData = results.map((data) => {
-    data.photos = data.photos.map((p) => {
+    data.photos = data.photos.map(() => {
       return mockImages[Math.ceil(Math.random() * (mockImages.length - 1))];
     });
     return {

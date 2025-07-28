@@ -1,6 +1,5 @@
 import React from "react";
-import { View, SafeAreaView, StatusBar, FlatList, Text } from "react-native";
-import styled from "styled-components/native";
+import { View, Text } from "react-native";
 import { StyledSafeAreaView } from "../../../components/utility/safe-area.component";
 const Map = () => {
   return (

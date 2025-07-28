@@ -23,4 +23,3 @@ export const Search = () => {
     </SearchContainer>
   );
 };
-// từ onchange -> enter gọi hàm search ở usecontext -> search có keyword là input điền vào
