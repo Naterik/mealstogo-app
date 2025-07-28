@@ -10,7 +10,7 @@ const defaultTextStyles = (theme) => `
 `;
 
 const body = (theme) => `
-    font-size: ${theme.fontSizes.body};
+    font-size: ${theme.fontSizes.caption};
 `;
 
 const hint = (theme) => `
@@ -42,9 +42,5 @@ const variants = {
 
 export const TextCustomize = styled.Text`
   ${({ theme }) => defaultTextStyles(theme)}
-  ${({ variant, theme }) => variants[variant](theme)}
+  ${({ variant = "body", theme }) => variants[variant](theme)}
 `;
-
-TextCustomize.defaultProps = {
-  variant: "body",
-};

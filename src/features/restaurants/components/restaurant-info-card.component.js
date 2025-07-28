@@ -24,23 +24,30 @@ const RestaurantInfoCard = ({ restaurant = {} }) => {
     isOpenNow = true,
     rating = 5.4,
     isClosedTemporarily = true,
+    placeId,
   } = restaurant;
+
   const ratingArray = Array.from(new Array(Math.floor(rating)));
   return (
     <>
-      <CardContainer elevation={5}>
+      <CardContainer elevation={3}>
         <CardCover
-          resizeMode="contain"
+          key={name}
           source={{
-            uri: "https://tse2.mm.bing.net/th/id/OIP.bxvkOTYm3g4rCJLVrZWVoQHaEK?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+            uri: photos[0],
           }}
         />
         <Card.Content>
-          <TextCustomize variant="label">Card Title</TextCustomize>
+          <TextCustomize variant="label">{name}</TextCustomize>
           <RestaurantIcon>
             <Star>
-              {ratingArray.map((index) => (
-                <SvgXml key={index} xml={star} width={20} height={20} />
+              {ratingArray.map((_, i) => (
+                <SvgXml
+                  key={`${placeId}-${i}`}
+                  xml={star}
+                  width={20}
+                  height={20}
+                />
               ))}
             </Star>
             <LeftIcon>
@@ -61,7 +68,8 @@ const RestaurantInfoCard = ({ restaurant = {} }) => {
               </Spacer>
             </LeftIcon>
           </RestaurantIcon>
-          <TextCustomize variant="body">Card content </TextCustomize>
+
+          <TextCustomize variant="body">{address} </TextCustomize>
         </Card.Content>
       </CardContainer>
     </>

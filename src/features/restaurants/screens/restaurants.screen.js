@@ -1,30 +1,59 @@
-import { View, SafeAreaView, StatusBar } from "react-native";
-import { Searchbar } from "react-native-paper";
-import RestaurantInfoCard from "../components/restaurant-info-card.component";
+import { View, SafeAreaView, StatusBar, FlatList, Text } from "react-native";
 import styled from "styled-components/native";
+import RestaurantInfoCard from "../components/restaurant-info-card.component";
+import { StyledSafeAreaView } from "../../../components/utility/safe-area.component";
+import { RestaurantContext } from "../../../services/restaurants/restaurants.context";
+import { useContext } from "react";
+import { Spacer } from "../../../components/spacer/spacer.component";
+import { ActivityIndicator, MD2Colors } from "react-native-paper";
+import { Search } from "../components/search.component";
 
-const Search = styled.View`
-  padding: ${(props) => props.theme.space[2]};
-`;
 const RestaurantCard = styled.View`
   padding: ${(props) => props.theme.space[2]};
+  margin-bottom: ${(props) => props.theme.space[5]};
 `;
-const StyledSafeAreaView = styled(SafeAreaView)`
-  flex: 1;
-  margin-top: ${StatusBar.currentHeight
-    ? `${StatusBar.currentHeight}px`
-    : "0px"};
+
+const RestaurantList = styled(FlatList).attrs({
+  contentContainerStyle: { padding: 8 },
+})``;
+
+const Loading = styled.Text`
+  position: fixed;
+  inset: 0px;
+  width: 16rem;
+  height: 6rem;
+  margin: auto;
 `;
 
 export const RestaurantsScreen = () => {
+  const { restaurants, isLoading, error } = useContext(RestaurantContext);
+
   return (
     <StyledSafeAreaView>
-      <Search>
-        <Searchbar placeholder="Search" />
-      </Search>
+      <Search />
       <RestaurantCard>
-        <RestaurantInfoCard />
+        <RestaurantList
+          data={restaurants}
+          //item:item
+          renderItem={({ item }) => {
+            return (
+              <Spacer position="bottom" size="medium">
+                <RestaurantInfoCard restaurant={item} />
+              </Spacer>
+            );
+          }}
+          // keyExtractor={(item) => item.name}
+        />
       </RestaurantCard>
+      {isLoading && (
+        <Loading>
+          <ActivityIndicator
+            animating={true}
+            color={MD2Colors.blueA200}
+            size="large"
+          />
+        </Loading>
+      )}
     </StyledSafeAreaView>
   );
 };
