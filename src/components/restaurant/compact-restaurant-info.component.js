@@ -11,54 +11,42 @@ import {
   View,
 } from "react-native";
 import { TextCustomize } from "../typography/typography.component";
+import { Spacer } from "../spacer/spacer.component";
+import { useNavigation } from "@react-navigation/native";
 
-const CompactImage = styled.Image`
+const CompactImage = styled.Image.attrs({
+  resizeMode: "cover",
+})`
   border-radius: 10px;
-  width: 120px;
-  height: 100px;
+  width: 270px;
+  height: 120px;
   padding: 20px;
 `;
 
 const Item = styled.View`
   padding: 10px;
   max-width: 100%;
-  max-heigh: 200;
-  align-items: flex-end;
+  max-heigh: 100%;
+  align-items: center;
 `;
 
-export const CompactRestaurantInfo = ({
-  restaurant,
-  setModalVisible,
-  modalVisible,
-}) => {
+export const CompactRestaurantInfo = ({ restaurant }) => {
+  const navigation = useNavigation();
   return (
     <Item>
-      <View style={styles.modalView}>
-        <TouchableOpacity onPress={() => setModalVisible(!modalVisible)}>
-          <CompactImage source={{ uri: restaurant.photos[0] }} />
-          <TextCustomize style={{ textAlign: "center" }} variant="body">
-            {restaurant.name}
-          </TextCustomize>
-        </TouchableOpacity>
-      </View>
+      <TouchableOpacity
+        onPress={() =>
+          navigation.navigate("RestaurantDetail", {
+            restaurant,
+          })
+        }
+      >
+        <CompactImage source={{ uri: restaurant.photos[0] }} />
+        <Spacer position="top" size="small" />
+        <TextCustomize style={{ textAlign: "center" }} variant="label">
+          {restaurant.name}
+        </TextCustomize>
+      </TouchableOpacity>
     </Item>
   );
 };
-const styles = StyleSheet.create({
-  modalView: {
-    width: 140,
-    height: 150,
-    backgroundColor: "white",
-    borderRadius: 20,
-    justifyContent: "center",
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-});

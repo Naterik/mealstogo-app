@@ -26,7 +26,7 @@ const Loading = styled.Text`
   margin: auto;
 `;
 
-export const RestaurantsScreen = ({ navigation }) => {
+export const RestaurantScreen = ({ navigation }) => {
   const { restaurants, isLoading } = useContext(RestaurantContext);
 
   return (
