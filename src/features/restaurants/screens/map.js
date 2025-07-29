@@ -1,4 +1,3 @@
-import React from "react";
 import { View, Text } from "react-native";
 import { StyledSafeAreaView } from "../../../components/utility/safe-area.component";
 const Map = () => {
