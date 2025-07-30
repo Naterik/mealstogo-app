@@ -17,11 +17,7 @@ export const MapNavigator = () => {
   const MapStack = createStackNavigator();
   return (
     <MapStack.Navigator screenOptions={navigationScreenOption}>
-      <MapStack.Screen
-        name="MapMain"
-        component={MapScreen}
-        options={{ headerShown: false }}
-      />
+      <MapStack.Screen name="MapMain" component={MapScreen} />
       <MapStack.Screen name="RestaurantDetail" component={RestaurantDetail} />
     </MapStack.Navigator>
   );

@@ -6,16 +6,14 @@ import React, {
   useMemo,
   useRef,
 } from "react";
-import MapView, { Callout } from "react-native-maps";
+import MapView from "react-native-maps";
 import { Marker } from "react-native-maps";
 import styled from "styled-components/native";
 import { Search } from "../components/search.component";
 import { RestaurantContext } from "../../../services/restaurants/restaurants.context";
 import { LocationContext } from "../../../services/location/location.context";
 import { CompactRestaurantInfo } from "../../../components/restaurant/compact-restaurant-info.component";
-import { Alert, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 const Map = styled(MapView)`
   width: 100%;

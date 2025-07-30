@@ -8,7 +8,7 @@ const CompactImage = styled.Image.attrs({
   resizeMode: "cover",
 })`
   border-radius: 10px;
-  width: 220px;
+  width: 120px;
   height: 120px;
   padding: 10px;
 `;
@@ -18,6 +18,11 @@ const Item = styled.View`
   max-width: 100%;
   max-heigh: 100%;
   align-items: center;
+`;
+
+const TextMarker = styled(TextCustomize)`
+  text-align: center;
+  max-width: 120px;
 `;
 
 export const CompactRestaurantInfo = ({ restaurant }) => {
@@ -33,9 +38,7 @@ export const CompactRestaurantInfo = ({ restaurant }) => {
       >
         <CompactImage source={{ uri: restaurant.photos[0] }} />
         <Spacer position="top" size="medium" />
-        <TextCustomize style={{ textAlign: "center" }} variant="body">
-          {restaurant.name}
-        </TextCustomize>
+        <TextMarker>{restaurant.name}</TextMarker>
       </TouchableOpacity>
     </Item>
   );
