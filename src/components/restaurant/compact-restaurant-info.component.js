@@ -1,15 +1,5 @@
-import React from "react";
 import styled from "styled-components/native";
-import WebView from "react-native-webview";
-import { Platform } from "react-native";
-import {
-  Alert,
-  Modal,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { TouchableOpacity } from "react-native";
 import { TextCustomize } from "../typography/typography.component";
 import { Spacer } from "../spacer/spacer.component";
 import { useNavigation } from "@react-navigation/native";
@@ -18,9 +8,9 @@ const CompactImage = styled.Image.attrs({
   resizeMode: "cover",
 })`
   border-radius: 10px;
-  width: 270px;
+  width: 220px;
   height: 120px;
-  padding: 20px;
+  padding: 10px;
 `;
 
 const Item = styled.View`
@@ -42,8 +32,8 @@ export const CompactRestaurantInfo = ({ restaurant }) => {
         }
       >
         <CompactImage source={{ uri: restaurant.photos[0] }} />
-        <Spacer position="top" size="small" />
-        <TextCustomize style={{ textAlign: "center" }} variant="label">
+        <Spacer position="top" size="medium" />
+        <TextCustomize style={{ textAlign: "center" }} variant="body">
           {restaurant.name}
         </TextCustomize>
       </TouchableOpacity>

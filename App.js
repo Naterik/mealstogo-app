@@ -9,6 +9,7 @@ import { RestaurantContextProvider } from "./src/services/restaurants/restaurant
 import { LocationContextProvider } from "./src/services/location/location.context";
 import { Navigation } from "./src/infrastructure/navigation";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { FavoritesContextProvider } from "./src/services/favorites/favorites.context";
 const App = () => {
   const [oswaldLoaded] = useOswald({ Oswald_400Regular });
   const [latoLoaded] = useLato({ Lato_400Regular });
@@ -20,7 +21,9 @@ const App = () => {
       <GestureHandlerRootView style={{ flex: 1 }}>
         <LocationContextProvider>
           <RestaurantContextProvider>
-            <Navigation />
+            <FavoritesContextProvider>
+              <Navigation />
+            </FavoritesContextProvider>
           </RestaurantContextProvider>
         </LocationContextProvider>
       </GestureHandlerRootView>

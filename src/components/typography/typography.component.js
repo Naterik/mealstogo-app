@@ -10,7 +10,7 @@ const defaultTextStyles = (theme) => `
 `;
 
 const body = (theme) => `
-    font-size: ${theme.fontSizes.caption};
+    font-size: ${theme.fontSizes.button};
 `;
 
 const hint = (theme) => `

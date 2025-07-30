@@ -25,8 +25,7 @@ const Map = styled(MapView)`
 const BottomSheetContainer = styled.View`
   background-color: #ffff;
   border-radius: 8px;
-
-  margin: 16px;
+  margin: 5px;
 `;
 
 export const MapScreen = () => {
@@ -91,8 +90,6 @@ export const MapScreen = () => {
         onChange={handleSheetChanges}
         backdropComponent={renderBackdrop}
         enablePanDownToClose={true}
-        backgroundStyle={{ backgroundColor: "white" }}
-        handleIndicatorStyle={{ backgroundColor: "#ccc" }}
       >
         <BottomSheetView>
           <BottomSheetContainer>
