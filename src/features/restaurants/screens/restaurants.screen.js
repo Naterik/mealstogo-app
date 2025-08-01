@@ -1,4 +1,3 @@
-import { FlatList } from "react-native";
 import styled from "styled-components/native";
 import RestaurantInfoCard from "../components/restaurant-info-card.component";
 import { StyledSafeAreaView } from "../../../components/utility/safe-area.component";
@@ -10,15 +9,13 @@ import { Search } from "../components/search.component";
 import { TouchableOpacity } from "react-native";
 import FavoritesBar from "../../../components/favorites/favorites-bar.component";
 import { FavoritesContext } from "../../../services/favorites/favorites.context";
+import { RestaurantList } from "../components/restaurant-list.styles";
+import { FadeInView } from "../../../components/animations/fade.component";
 
 const RestaurantCard = styled.View`
   padding: ${(props) => props.theme.space[2]};
   margin-bottom: ${(props) => props.theme.space[5]};
 `;
-
-const RestaurantList = styled(FlatList).attrs({
-  contentContainerStyle: { padding: 8 },
-})``;
 
 const Loading = styled.Text`
   position: fixed;
@@ -52,13 +49,14 @@ export const RestaurantScreen = ({ navigation }) => {
                   })
                 }
               >
-                <Spacer position="bottom" size="medium">
-                  <RestaurantInfoCard restaurant={item} />
-                </Spacer>
+                <FadeInView>
+                  <Spacer position="bottom" size="medium">
+                    <RestaurantInfoCard restaurant={item} />
+                  </Spacer>
+                </FadeInView>
               </TouchableOpacity>
             );
           }}
-          // keyExtractor={(item) => item.name}
         />
       </RestaurantCard>
       {isLoading && (

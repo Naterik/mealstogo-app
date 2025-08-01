@@ -1,8 +1,12 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Settings from "../../features/restaurants/screens/settings";
+
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { RestaurantNavigator } from "./restaurant.navigator";
 import { MapNavigator } from "./map.navigator";
+import { LocationContextProvider } from "../../services/location/location.context";
+import { RestaurantContextProvider } from "../../services/restaurants/restaurants.context";
+import { FavoritesContextProvider } from "../../services/favorites/favorites.context";
+import { SettingsNavigator } from "./settings.navigator";
 
 const Tab = createBottomTabNavigator();
 const TAB_ICON = {
@@ -23,22 +27,28 @@ const createScreenOptions = ({ route }) => {
 };
 export const AppNavigator = () => {
   return (
-    <Tab.Navigator screenOptions={createScreenOptions}>
-      <Tab.Screen
-        name="Restaurants"
-        component={RestaurantNavigator}
-        options={{ headerShown: false }}
-      />
-      <Tab.Screen
-        name="Map"
-        component={MapNavigator}
-        options={{ headerShown: false }}
-      />
-      <Tab.Screen
-        name="Settings"
-        component={Settings}
-        options={{ headerShown: false }}
-      />
-    </Tab.Navigator>
+    <LocationContextProvider>
+      <RestaurantContextProvider>
+        <FavoritesContextProvider>
+          <Tab.Navigator screenOptions={createScreenOptions}>
+            <Tab.Screen
+              name="Restaurants"
+              component={RestaurantNavigator}
+              options={{ headerShown: false }}
+            />
+            <Tab.Screen
+              name="Map"
+              component={MapNavigator}
+              options={{ headerShown: false }}
+            />
+            <Tab.Screen
+              name="Settings"
+              component={SettingsNavigator}
+              options={{ headerShown: false }}
+            />
+          </Tab.Navigator>
+        </FavoritesContextProvider>
+      </RestaurantContextProvider>
+    </LocationContextProvider>
   );
 };

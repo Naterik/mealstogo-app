@@ -5,12 +5,11 @@ import {
 import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato";
 import { ThemeProvider } from "styled-components/native";
 import { theme } from "./src/infrastructure/theme/index";
-import { RestaurantContextProvider } from "./src/services/restaurants/restaurants.context";
-import { LocationContextProvider } from "./src/services/location/location.context";
 import { Navigation } from "./src/infrastructure/navigation";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { FavoritesContextProvider } from "./src/services/favorites/favorites.context";
-import * as firebase from "firebase/app";
+import { initializeApp } from "firebase/app";
+import { initializeAuth, getReactNativePersistence } from "firebase/auth";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
 const firebaseConfig = {
   apiKey: "AIzaSyBL-U9udZgxwhc7uljUf_IOxW0dNCdzurQ",
@@ -21,8 +20,11 @@ const firebaseConfig = {
   appId: "1:778541713992:web:7da1b6b3e10b49d0eea67d",
 };
 
-firebase.initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 
+export const auth = initializeAuth(app, {
+  persistence: getReactNativePersistence(AsyncStorage),
+});
 const App = () => {
   const [oswaldLoaded] = useOswald({ Oswald_400Regular });
   const [latoLoaded] = useLato({ Lato_400Regular });
@@ -32,13 +34,7 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <GestureHandlerRootView style={{ flex: 1 }}>
         <AuthenticationContextProvider>
-          <LocationContextProvider>
-            <RestaurantContextProvider>
-              <FavoritesContextProvider>
-                <Navigation />
-              </FavoritesContextProvider>
-            </RestaurantContextProvider>
-          </LocationContextProvider>
+          <Navigation />
         </AuthenticationContextProvider>
       </GestureHandlerRootView>
     </ThemeProvider>
