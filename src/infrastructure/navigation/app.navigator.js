@@ -1,5 +1,4 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { RestaurantNavigator } from "./restaurant.navigator";
 import { MapNavigator } from "./map.navigator";

@@ -14,6 +14,9 @@ import { RestaurantContext } from "../../../services/restaurants/restaurants.con
 import { LocationContext } from "../../../services/location/location.context";
 import { CompactRestaurantInfo } from "../../../components/restaurant/compact-restaurant-info.component";
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
+import { TextCustomize } from "../../../components/typography/typography.component";
+import { StyledSafeAreaView } from "../../../components/utility/safe-area.component";
+import { Spacer } from "../../../components/spacer/spacer.component";
 
 const Map = styled(MapView)`
   width: 100%;
@@ -26,7 +29,7 @@ const BottomSheetContainer = styled.View`
   margin: 5px;
 `;
 
-export const MapScreen = () => {
+const RestaurantMap = ({ navigation }) => {
   const { restaurants = [] } = useContext(RestaurantContext);
   const { location } = useContext(LocationContext);
   const { lat, lng, viewport } = location;
@@ -102,4 +105,16 @@ export const MapScreen = () => {
       </BottomSheet>
     </>
   );
+};
+
+export const MapScreen = ({ navigation }) => {
+  const { location } = useContext(LocationContext);
+  if (!location) {
+    return (
+      <StyledSafeAreaView>
+        <TextCustomize variant="error">Not retrieving data</TextCustomize>
+      </StyledSafeAreaView>
+    );
+  }
+  return <RestaurantMap navigation={navigation} />;
 };

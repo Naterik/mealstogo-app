@@ -8,7 +8,7 @@ import { CameraScreen } from "../../features/setting/screens/camera.screen";
 
 const SettingsStack = createStackNavigator();
 
-export const SettingsNavigator = ({ route, navigation }) => {
+export const SettingsNavigator = () => {
   return (
     <SettingsStack.Navigator>
       <SettingsStack.Screen

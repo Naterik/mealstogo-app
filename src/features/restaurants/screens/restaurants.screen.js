@@ -11,6 +11,8 @@ import FavoritesBar from "../../../components/favorites/favorites-bar.component"
 import { FavoritesContext } from "../../../services/favorites/favorites.context";
 import { RestaurantList } from "../components/restaurant-list.styles";
 import { FadeInView } from "../../../components/animations/fade.component";
+import { LocationContext } from "../../../services/location/location.context";
+import { TextCustomize } from "../../../components/typography/typography.component";
 
 const RestaurantCard = styled.View`
   padding: ${(props) => props.theme.space[2]};
@@ -26,9 +28,11 @@ const Loading = styled.Text`
 `;
 
 export const RestaurantScreen = ({ navigation }) => {
+  const { error } = useContext(LocationContext);
   const { restaurants, isLoading } = useContext(RestaurantContext);
   const { favorites } = useContext(FavoritesContext);
   const [isToggled, setIsToggled] = useState(false);
+  const hasError = !!error;
   return (
     <StyledSafeAreaView>
       <Search
@@ -36,29 +40,40 @@ export const RestaurantScreen = ({ navigation }) => {
         onFavoritesToggled={() => setIsToggled(!isToggled)}
       />
       {isToggled && <FavoritesBar favorites={favorites} />}
+
       <RestaurantCard>
-        <RestaurantList
-          data={restaurants}
-          //item:item
-          renderItem={({ item }) => {
-            return (
-              <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate("RestaurantDetail", {
-                    restaurant: item,
-                  })
-                }
-              >
-                <FadeInView>
-                  <Spacer position="bottom" size="medium">
-                    <RestaurantInfoCard restaurant={item} />
-                  </Spacer>
-                </FadeInView>
-              </TouchableOpacity>
-            );
-          }}
-        />
+        {hasError && (
+          <Spacer position="left" size="large">
+            <TextCustomize variant="error">
+              Something went wrong with retrieving data
+            </TextCustomize>
+          </Spacer>
+        )}
+        {!hasError && (
+          <RestaurantList
+            data={restaurants}
+            //item:item
+            renderItem={({ item }) => {
+              return (
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate("RestaurantDetail", {
+                      restaurant: item,
+                    })
+                  }
+                >
+                  <FadeInView>
+                    <Spacer position="bottom" size="medium">
+                      <RestaurantInfoCard restaurant={item} />
+                    </Spacer>
+                  </FadeInView>
+                </TouchableOpacity>
+              );
+            }}
+          />
+        )}
       </RestaurantCard>
+
       {isLoading && (
         <Loading>
           <ActivityIndicator

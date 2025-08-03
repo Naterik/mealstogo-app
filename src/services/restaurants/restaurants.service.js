@@ -1,19 +1,15 @@
-import { mocks, mockImages } from "../restaurants/mock/index";
 import camelize from "camelize";
+import { local, isMock } from "../../utils/env";
+
 export const restaurantRequest = (location) => {
-  return new Promise((resolve, reject) => {
-    const mock = mocks[location];
-    if (!mock) {
-      reject("not found");
-    }
-    resolve(mock);
-  });
+  return fetch(`${local}/placeNearBy?location=${location}&mock=${isMock}`)
+    .then((place) => {
+      return place.json();
+    })
+    .catch((e) => console.log("restaurantError", e));
 };
 export const restaurantTransform = ({ results = [] }) => {
   const newData = results.map((data) => {
-    data.photos = data.photos.map(() => {
-      return mockImages[Math.ceil(Math.random() * (mockImages.length - 1))];
-    });
     return {
       ...data,
       isOpenNow: data?.opening_hours?.open_now,

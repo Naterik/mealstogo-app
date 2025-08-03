@@ -12,12 +12,12 @@ import { initializeAuth, getReactNativePersistence } from "firebase/auth";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
 const firebaseConfig = {
-  apiKey: "AIzaSyBL-U9udZgxwhc7uljUf_IOxW0dNCdzurQ",
-  authDomain: "mealstogo-5e117.firebaseapp.com",
-  projectId: "mealstogo-5e117",
-  storageBucket: "mealstogo-5e117.firebasestorage.app",
-  messagingSenderId: "778541713992",
-  appId: "1:778541713992:web:7da1b6b3e10b49d0eea67d",
+  apiKey: "AIzaSyBho9AanLDmjfTdbcWLK7qt_bNu8JZM4Cs",
+  authDomain: "mymealstogo-d8032.firebaseapp.com",
+  projectId: "mymealstogo-d8032",
+  storageBucket: "mymealstogo-d8032.firebasestorage.app",
+  messagingSenderId: "22717382567",
+  appId: "1:22717382567:web:55e8c65de4565fca568082",
 };
 
 const app = initializeApp(firebaseConfig);
