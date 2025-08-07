@@ -2,8 +2,9 @@ const { geocodeRequest } = require("./geocode");
 const { placesRequest } = require("./places");
 const { payRequest } = require("./pay/index");
 const { onRequest } = require("firebase-functions/v2/https");
-const { keyRequest } = require("./pay/key");
-
+const stripe = require("stripe")(
+  "sk_test_51Rs15qQjTMmECJXgr47V9S4D6YdqZ4I6RmaqAbQOIO3IeqiBPvdRByDwKAlHKNCSRaEsxKMmACyzelftznBHqVfH00ttcByFj5"
+);
 exports.geoCode = onRequest((request, response) => {
   geocodeRequest(request, response);
 });
@@ -12,13 +13,10 @@ exports.placesNearBy = onRequest((request, response) => {
   placesRequest(request, response);
 });
 
-exports.pay = onRequest((request, response, string) => {
-  payRequest(request, response, string);
+exports.pay = onRequest((request, response) => {
+  payRequest(request, response, stripe);
 });
 
-exports.key = onRequest((request, response) => {
-  keyRequest(request, response);
-});
 // exports.cityCode = functions.https.onRequest((request, response) => {
 //   geocodeRequest(request, response, client);
 // });

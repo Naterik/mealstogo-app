@@ -3,6 +3,7 @@ import { Platform } from "react-native";
 const liveGeo = `https://geocode-u6eolxbmoq-uc.a.run.app`;
 const livePlace = `https://placesnearby-u6eolxbmoq-uc.a.run.app`;
 export const local = "http://192.168.1.205:5001/mymealstogo-d8032/us-central1";
+export const host = "https://pay-u6eolxbmoq-uc.a.run.app";
 export const PUBLIC_STRIPE_KEY =
   "pk_test_51Rs15qQjTMmECJXgXfi2BTpUb8WEM8e1U9uZqu8wXrnlcVrVfgXtUiXQJi4YcgdB6bGXZmPFtHObDuFUoEskbn9A00oYjSkBcW";
 export const PRIVATE_STRIPE_KEY =
