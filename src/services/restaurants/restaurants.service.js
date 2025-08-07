@@ -2,7 +2,7 @@ import camelize from "camelize";
 import { local, isMock } from "../../utils/env";
 
 export const restaurantRequest = (location) => {
-  return fetch(`${local}/placeNearBy?location=${location}&mock=${isMock}`)
+  return fetch(`${local}/placesNearBy?location=${location}&mock=${isMock}`)
     .then((place) => {
       return place.json();
     })

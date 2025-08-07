@@ -19,7 +19,6 @@ export const AccountCover = styled.View`
   position: absolute;
   width: 100%;
   height: 100%;
-
   background-color: rgba(255, 255, 255, 0.4);
 `;
 export const AccountContainer = styled.View`

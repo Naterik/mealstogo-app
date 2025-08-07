@@ -2,9 +2,8 @@ import camelize from "camelize";
 import { local, isMock } from "../../utils/env";
 
 export const locationRequest = (searchTerm) => {
-  return fetch(`${local}/geocode?city=${searchTerm}&mock=${isMock}`)
+  return fetch(`${local}/geoCode?city=${searchTerm}&mock=${isMock}`)
     .then((res) => {
-      console.log("res", res);
       return res.json();
     })
     .catch((err) => console.log("locationError", err.message));

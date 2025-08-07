@@ -19,7 +19,7 @@ const url = require("url");
 //   return restaurant;
 // };
 
-module.exports.placesRequest = (request, response, client) => {
+module.exports.placesRequest = (request, response) => {
   const { location, mock } = url.parse(request.url, true).query;
   if (mock === "true") {
     const data = mocks[location];
