@@ -2,9 +2,8 @@ const { geocodeRequest } = require("./geocode");
 const { placesRequest } = require("./places");
 const { payRequest } = require("./pay/index");
 const { onRequest } = require("firebase-functions/v2/https");
-const stripe = require("stripe")(
-  "sk_test_51Rs15qQjTMmECJXgr47V9S4D6YdqZ4I6RmaqAbQOIO3IeqiBPvdRByDwKAlHKNCSRaEsxKMmACyzelftznBHqVfH00ttcByFj5"
-);
+const PRIVATE_STRIPE_KEY = require(".././src/utils/env");
+const stripe = require("stripe")(PRIVATE_STRIPE_KEY);
 exports.geoCode = onRequest((request, response) => {
   geocodeRequest(request, response);
 });
